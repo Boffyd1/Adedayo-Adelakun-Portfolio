@@ -1,0 +1,379 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20214.22.0108.1039                               -->
+<workbook original-version='18.1' source-build='2021.4.3 (20214.22.0108.1039)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='Operating Room Data (Tableau Training Practice Data)' inline='true' name='federated.1y6ec5e0dtm3dv1abbzfa0mnse33' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Tableau Training Practice Data' name='excel-direct.0bqsxqy1dnso6z1bkhrlb070yyz8'>
+            <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='C:/Users/BABA D/OneDrive/Desktop/CODING/TABLEAU/Tableau Training Practice Data.xlsx' interpretationMode='0' password='' server='' validate='no' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='excel-direct.0bqsxqy1dnso6z1bkhrlb070yyz8' name='Operating Room Data' table='[&apos;Operating Room Data$&apos;]' type='table'>
+          <columns gridOrigin='A1:N592:no:A1:N592:0' header='yes' outcome='6'>
+            <column datatype='integer' name='Case_Number' ordinal='0' />
+            <column datatype='string' name='Add-on vs Scheduled Flag' ordinal='1' />
+            <column datatype='string' name='Hospital' ordinal='2' />
+            <column datatype='string' name='Primary Surgeon' ordinal='3' />
+            <column datatype='string' name='Operating Room' ordinal='4' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy' name='In_Room_Date' ordinal='5' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='In_Room_Time' ordinal='6' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Out_Of_Room_Time' ordinal='7' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Start_Time' ordinal='8' />
+            <column datatype='datetime' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Stop_Time' ordinal='9' />
+            <column datatype='datetime' name='Service' ordinal='10' />
+            <column datatype='integer' name='Room_Minutes_Actual' ordinal='11' />
+            <column datatype='integer' name='Room_Minutes_Scheduled' ordinal='12' />
+            <column datatype='integer' name='Turnover' ordinal='13' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='excel-direct.0bqsxqy1dnso6z1bkhrlb070yyz8' name='Operating Room Data' table='[&apos;Operating Room Data$&apos;]' type='table'>
+          <columns gridOrigin='A1:N592:no:A1:N592:0' header='yes' outcome='6'>
+            <column datatype='integer' name='Case_Number' ordinal='0' />
+            <column datatype='string' name='Add-on vs Scheduled Flag' ordinal='1' />
+            <column datatype='string' name='Hospital' ordinal='2' />
+            <column datatype='string' name='Primary Surgeon' ordinal='3' />
+            <column datatype='string' name='Operating Room' ordinal='4' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy' name='In_Room_Date' ordinal='5' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='In_Room_Time' ordinal='6' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Out_Of_Room_Time' ordinal='7' />
+            <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Start_Time' ordinal='8' />
+            <column datatype='datetime' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Stop_Time' ordinal='9' />
+            <column datatype='datetime' name='Service' ordinal='10' />
+            <column datatype='integer' name='Room_Minutes_Actual' ordinal='11' />
+            <column datatype='integer' name='Room_Minutes_Scheduled' ordinal='12' />
+            <column datatype='integer' name='Turnover' ordinal='13' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>12</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:N592:no:A1:N592:0&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>6</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Case_Number</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Case_Number]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Case_Number</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Add-on vs Scheduled Flag</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Add-on vs Scheduled Flag]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Add-on vs Scheduled Flag</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Hospital</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Hospital]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Hospital</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Primary Surgeon</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Primary Surgeon]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Primary Surgeon</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Operating Room</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Operating Room]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Operating Room</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>In_Room_Date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[In_Room_Date]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>In_Room_Date</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>In_Room_Time</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[In_Room_Time]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>In_Room_Time</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Out_Of_Room_Time</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Out_Of_Room_Time]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Out_Of_Room_Time</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Scheduled_Start_Time</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Scheduled_Start_Time]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Scheduled_Start_Time</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Scheduled_Stop_Time</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Scheduled_Stop_Time]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Scheduled_Stop_Time</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Service</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Service]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Service</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>datetime</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Room_Minutes_Actual</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Room_Minutes_Actual]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Room_Minutes_Actual</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Room_Minutes_Scheduled</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Room_Minutes_Scheduled]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Room_Minutes_Scheduled</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Turnover</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Turnover]</local-name>
+            <parent-name>[Operating Room Data]</parent-name>
+            <remote-alias>Turnover</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Case Number' datatype='integer' name='[Case_Number]' role='dimension' type='ordinal' />
+      <column caption='In Room Date' datatype='date' name='[In_Room_Date]' role='dimension' type='ordinal' />
+      <column caption='In Room Time' datatype='date' name='[In_Room_Time]' role='dimension' type='ordinal' />
+      <column caption='Out Of Room Time' datatype='date' name='[Out_Of_Room_Time]' role='dimension' type='ordinal' />
+      <column caption='Room Minutes Actual' datatype='integer' name='[Room_Minutes_Actual]' role='measure' type='quantitative' />
+      <column caption='Room Minutes Scheduled' datatype='integer' name='[Room_Minutes_Scheduled]' role='measure' type='quantitative' />
+      <column caption='Scheduled Start Time' datatype='date' name='[Scheduled_Start_Time]' role='dimension' type='ordinal' />
+      <column caption='Scheduled Stop Time' datatype='datetime' name='[Scheduled_Stop_Time]' role='dimension' type='ordinal' />
+      <_.fcp.ObjectModelTableType.true...column caption='Operating Room Data' datatype='table' name='[__tableau_internal_object_id__].[Operating Room Data_11A88BDA799341BBB267C502694BF4F9]' role='measure' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='Operating Room Data' id='Operating Room Data_11A88BDA799341BBB267C502694BF4F9'>
+            <properties context=''>
+              <relation connection='excel-direct.0bqsxqy1dnso6z1bkhrlb070yyz8' name='Operating Room Data' table='[&apos;Operating Room Data$&apos;]' type='table'>
+                <columns gridOrigin='A1:N592:no:A1:N592:0' header='yes' outcome='6'>
+                  <column datatype='integer' name='Case_Number' ordinal='0' />
+                  <column datatype='string' name='Add-on vs Scheduled Flag' ordinal='1' />
+                  <column datatype='string' name='Hospital' ordinal='2' />
+                  <column datatype='string' name='Primary Surgeon' ordinal='3' />
+                  <column datatype='string' name='Operating Room' ordinal='4' />
+                  <column datatype='date' date-parse-format='MM/dd/yyyy' name='In_Room_Date' ordinal='5' />
+                  <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='In_Room_Time' ordinal='6' />
+                  <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Out_Of_Room_Time' ordinal='7' />
+                  <column datatype='date' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Start_Time' ordinal='8' />
+                  <column datatype='datetime' date-parse-format='MM/dd/yyyy hh:mm:ss a' name='Scheduled_Stop_Time' ordinal='9' />
+                  <column datatype='datetime' name='Service' ordinal='10' />
+                  <column datatype='integer' name='Room_Minutes_Actual' ordinal='11' />
+                  <column datatype='integer' name='Room_Minutes_Scheduled' ordinal='12' />
+                  <column datatype='integer' name='Turnover' ordinal='13' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{6DD51956-EE75-4C6A-ABF2-399C821435CF}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{BB027CA8-7CDB-4F38-AA02-213B69D0616B}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
+      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
+      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
+      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
+      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
+      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
+      fBUOM1sAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

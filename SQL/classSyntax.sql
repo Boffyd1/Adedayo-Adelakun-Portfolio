@@ -1,0 +1,830 @@
+-- SQL DDL COMMANDS
+-- CREATE COMMAND
+-- create a sample database
+CREATE DATABASE sampleDatabase;
+
+USE sampleDatabase;
+
+CREATE DATABASE sampleDatabase2;
+-- create a sample table
+CREATE TABLE sampleTable (
+column_1 INT, 
+column_2 CHAR(9), 
+column_3 VARCHAR(20),
+column_4 DATE
+);
+
+-- creating table from an existing table
+CREATE TABLE newSampleTable
+AS
+SELECT *
+FROM sampletable;
+
+-- ADDING A NEW COLUMN
+-- ALTER COMMAND(MSSQL)
+ALTER TABLE sampletable
+ADD column_5 FLOAT;
+
+-- ALTER COMMAND(MYSQL/POSTGRESQL)
+ALTER TABLE sampletable
+ADD COLUMN column_5 FLOAT;
+
+-- MODIFYING A COLUMN (MSSQL)
+ALTER TABLE sampletable
+ALTER COLUMN column_2 VARCHAR(20);
+
+ALTER TABLE sampletable
+ALTER COLUMN column_3 CHAR(9);
+
+-- MODIFYING A COLUMN (MYSQL)
+ALTER TABLE sampletable
+MODIFY COLUMN column_2 VARCHAR(20);
+
+ALTER TABLE sampletable
+MODIFY COLUMN column_3 CHAR(9);
+
+-- MODIFYING A COLUMN (POSTGRESQL)
+ALTER TABLE sampletable
+ALTER COLUMN column_2 TYPE VARCHAR(20);
+
+ALTER TABLE sampletable
+ALTER COLUMN column_3 TYPE CHAR(9);
+
+-- DROP COMMAND
+-- DROPPING A DATBASE
+DROP DATABASE sampledatabase2;
+
+-- DROPPING A TABLE
+DROP TABLE newsampletable;
+
+-- DROPPING A COLUMN
+ALTER TABLE sampletable
+DROP COLUMN column_5;
+
+
+-- CONSTRAINTS
+-- NOT NULL
+CREATE TABLE sampleTable2 (
+column1 INT NOT NULL,
+column2 CHAR(50) NOT NULL,
+column3 VARCHAR(255),
+column4 DATE);
+
+-- ADD NOT NULL CONSTRAINT AFTER TABLE CREATION(MSSQL)
+ALTER TABLE sampleTable2
+ALTER COLUMN column3 varchar(255) NOT NULL;
+
+-- REMOVE NOT NULL CONSTRAINT FROM A COLUMN(MSSQL)
+ALTER TABLE sampleTable2
+ALTER COLUMN column2 char(50);
+
+-- ADD NOT NULL CONSTRAINT AFTER TABLE CREATION(POSTGRESQL)
+ALTER TABLE sampleTable2
+ALTER COLUMN column3 SET NOT NULL;
+
+-- REMOVE NOT NULL CONSTRAINT FROM A COLUMN(POSTGRESQL)
+ALTER TABLE sampleTable2
+ALTER COLUMN column3 DROP NOT NULL;
+
+-- ADD NOT NULL CONSTRAINT AFTER TABLE CREATION(MYSQL)
+ALTER TABLE sampleTable2
+MODIFY COLUMN column3 varchar(255) NOT NULL;
+
+-- REMOVE NOT NULL CONSTRAINT FROM A COLUMN(MYSQL)
+ALTER TABLE sampleTable2
+MODIFY COLUMN column2 char(50);
+
+-- UNIQUE CONSTRAINT(MSSQL/POSTGRESQL)
+CREATE TABLE sampleTable3 (
+column1 INT NOT NULL UNIQUE,
+column2 CHAR(50) NOT NULL,
+column3 VARCHAR(255),
+column4 DATE
+);
+
+-- UNIQUE CONSTRAINT(MYSQL/POSTGRESQL)
+CREATE TABLE sampleTable3 (
+column1 INT NOT NULL,
+column2 CHAR(50) NOT NULL,
+column3 VARCHAR(255),
+column4 DATE,
+UNIQUE(column1)
+);
+
+-- ADDING UNIQUE USING ALTER WITHOUT MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+ALTER TABLE sampleTable3
+ADD UNIQUE(column2);
+
+-- ADDING UNIQUE USING ALTER WITH MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+ALTER TABLE sampleTable3
+ADD CONSTRAINT UC_Name UNIQUE (column3);
+
+-- ADDING UNIQUE TO MULTIPLE COLUMNS USING ALTER WITH MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+ALTER TABLE sampleTable3
+ADD CONSTRAINT UC_Name UNIQUE (column3, column2);
+
+-- REMOVE UNIQUE FROM A COLUMN(MSSQL/POSTGRESQL)
+ALTER TABLE sampletable3
+DROP CONSTRAINT UC_Name;
+
+-- REMOVE UNIQUE FROM A COLUMN(MYSQL)
+ALTER TABLE sampletable3
+DROP INDEX column1;
+
+-- PRIMARY KEY(MSSQL/POSTGRESQL)
+CREATE TABLE sampleTable4 (
+column1 INT NOT NULL PRIMARY KEY,
+column2 CHAR(50) NOT NULL,
+column3 VARCHAR(255),
+column4 DATE
+);
+
+-- PRIMARY KEY(MYSQL/POSTGRESQL)
+CREATE TABLE sampleTable4 (
+column1 INT NOT NULL,
+column2 CHAR(50) NOT NULL,
+column3 VARCHAR(255),
+column4 DATE,
+PRIMARY KEY(column3)
+);
+
+-- ADDING PRIMARY KEY USING ALTER WITHOUT MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+ALTER TABLE sampleTable3
+ADD PRIMARY KEY(column2);
+
+-- ADDING PRIMARY KEY USING ALTER WITH MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+ALTER TABLE sampleTable2
+ADD CONSTRAINT PK_Name PRIMARY KEY (column1);
+
+-- ADDING PRIMARY KEY TO MULTIPLE COLUMNS USING ALTER WITH MANUAL NAMING(MSSQL/MYSQL/POSTGRESQL)
+-- THIS IS CALLED COMPOSITE PRIMARY KEY
+ALTER TABLE sampleTable2
+ADD CONSTRAINT PK_Name PRIMARY KEY (column1, column2, column3);
+
+-- DROPPING PRIMARY KEY(MYSQL)
+ALTER TABLE sampleTable2
+DROP PRIMARY KEY;
+
+-- DROPPING PRIMARY KEY(MSSQL)
+ALTER TABLE sampleTable2
+DROP CONSTRAINT PK_Name;
+
+-- FOREIGN KEY
+-- Persons Table
+CREATE TABLE Persons (
+personID INT NOT NULL PRIMARY KEY,
+firstName VARCHAR(255) NOT NULL,
+lastName VARCHAR(255) NOT NULL,
+age INT
+);
+
+-- Orders Table
+CREATE TABLE Orders (
+orderID INT NOT NULL PRIMARY KEY,
+orderNumber INT NOT NULL,
+personID INT NOT NULL
+);
+
+-- Adding Foreign Key to Orders Table
+ALTER TABLE orders
+ADD CONSTRAINT FK_personID FOREIGN KEY(personID)
+REFERENCES persons(personID);
+
+-- DROPPING FOREING KEY(MYSQL)
+ALTER TABLE orders
+DROP FOREIGN KEY FK_personID;
+
+-- DROPPING FOREING KEY(MSSQL/POSTGRESQL)
+ALTER TABLE orders
+DROP CONSTRAINT FK_personID;
+
+-- CHECK CONSTRAINT
+CREATE TABLE checkTable (
+ID INT,
+date INT,
+CHECK(date >= 18));
+
+-- ADDING CHECK CONSTRAINT TO MULTIPLE COLUMNS
+ALTER TABLE persons
+ADD CONSTRAINT Check_Persons CHECK(age >= 18 AND personID > 0);
+
+
+-- INDEX
+-- Duplicate values allowed
+CREATE INDEX index1
+ON persons (personID);
+
+-- Duplicate values not allowed
+CREATE UNIQUE INDEX index2
+ON orders (orderID);
+
+-- DROPPING AN INDEX(MSSQL)
+DROP INDEX index1
+ON persons;
+-- OR
+-- DROPPING AN INDEX(MSSQL)
+DROP INDEX orders.index2;
+
+-- DROPPING AN INDEX(MYSQL)
+ALTER TABLE persons
+DROP INDEX index1;
+
+-- DEFAULT CONSTRAINT(MSSQL)
+ALTER TABLE persons
+ADD CONSTRAINT df_age DEFAULT '18' FOR age;
+
+-- DEFAULT CONSTRAINT(MYSQL)
+ALTER TABLE persons
+ALTER age SET DEFAULT(18);
+
+-- DROP DEFAULT CONSTRAINT(MSSQL)
+ALTER TABLE persons
+ALTER COLUMN age DROP DEFAULT;
+
+-- DROP DEFAULT CONSTRAINT(MYSQL)
+ALTER TABLE persons
+ALTER age DROP DEFAULT;
+
+-- AUTO_INCREMENT(MSSQL)
+CREATE TABLE autocre(
+ID INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+fname varchar(30),
+lname varchar(30));
+
+-- AUTO_INCREMENT(MYSQL)
+CREATE TABLE autocre(
+ID INT NOT NULL auto_increment,
+fname varchar(30),
+lname varchar(30),
+PRIMARY KEY(ID));
+
+-- DML COMMANDS(INSERT, UPDATE, DELETE, and SELECT)
+-- INSERTING RECORDS WITHOUT AUTO_INCREMENT
+INSERT INTO persons (personID, firstName, lastName, age)
+VALUES (1, 'Isaac', 'Adesakin', 23),
+(2, 'John', 'Oladipo', 10),
+(3, 'Khadijat', 'Jimoh', 44);
+
+-- INSERTING RECORDS WITH AUTO_INCREMENT
+INSERT INTO autocre (fname, lname)
+VALUES ('Isaac', 'Adesakin'),
+('John', 'Oladipo'),
+('Khadijat', 'Jimoh');
+
+-- UPDATING RECORDS
+UPDATE autocre
+SET lname = 'Adesakin'
+WHERE ID = 1;
+
+-- DELETING RECORDS
+-- DELETING ALL RECORDS
+DELETE FROM persons;
+
+-- DELETING SPECIFIC RECORDS
+DELETE FROM autocre
+WHERE ID = 2;
+
+-- SELECTING ALL RECORDS WITHOUT CONDITIONS
+SELECT * FROM autocre;
+
+-- SELECTING ALL RECORDS WITH CONDITIONS
+SELECT * FROM autocre WHERE ID = 3;
+
+-- SELECTING SPECIFIC COLUMNS WITHOUT CONDITION
+SELECT ID, lname FROM autocre;
+
+-- SELECTING SPECIFIC COLUMNS WITH CONDITION
+SELECT ID, lname FROM autocre WHERE ID = 1;
+
+-- SQL KEYED-IN ORDER
+SELECT custid, count(*) Total_Order
+FROM sales.orders
+WHERE shipcountry = 'France'
+GROUP BY custid
+HAVING count(*) >= 5
+ORDER BY count(*) DESC;
+
+SELECT custid, freight
+FROM sales.orders
+WHERE shipcountry = 'France'
+ORDER BY freight DESC;
+
+SELECT custid, SUM(freight) Total_Order
+FROM sales.orders
+WHERE shipcountry = 'France'
+GROUP BY custid
+HAVING SUM(freight) >= 5
+ORDER BY SUM(freight) DESC;
+
+-- Group by with multiple Aggeagate Column
+select	shipcountry country, 
+		count(*) total_orders, 
+		sum(FREIGHT) tOTAL_freight
+from sales.orders
+group by shipcountry;
+
+-- Group by with Derived Non-Aggregate Column
+select	CONCAT(shipcity, ' ', shipcountry) AS Locations, 
+		count(*) total_orders, 
+		sum(FREIGHT) tOTAL_freight
+from sales.orders
+group by Shipcity, Shipcountry
+
+select concat(shipcity, ' ', shipcountry)
+from sales.orders
+
+
+-- SQL Arithmetic Operators
+SELECT	freight,
+		(freight * 10) Multiplication,
+		(freight + 10) Addition,
+		(freight - 10) Substraction,
+		(freight / 10) Dividion,
+		(freight % 10) Remainder
+FROM sales.orders
+
+-- Logical Operators
+-- AND Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry = 'USA' AND shipcity = 'Lander';
+
+-- OR Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry = 'Brazil' OR shipcity = 'Lander';
+
+-- IN Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry IN ('Brazil', 'Argentina', 'Chile');
+
+-- NOT Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry NOT IN ('Brazil', 'Argentina', 'Chile');
+
+-- BETWEEN Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE orderdate BETWEEN '01-08-2006' AND '30-09-2006';
+
+-- changing date format in Oracle Toad
+ALTER SESSION SET nls_date_format='MM/DD/RR'
+
+-- LIKE Operator(Used with Wildcards)
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry LIKE '_r____';
+
+-- IN Operator
+SELECT shipcountry, shipcity, custid, freight Total_Order
+FROM sales.orders
+WHERE shipcountry IN ('Brazil', 'Argentina', 'Chile');
+
+-- SQL FUNCTIONS
+-- AGGREGATE FUNCTIONS
+SELECT	SUM(freight),
+		AVG(freight),
+		MAX(freight),
+		MIN(freight)
+FROM sales.orders;
+
+-- STRING FUNCTIONS
+-- CAST
+SELECT CAST(150 AS CHAR);
+SELECT CAST(orderdate AS DATE) from sales.orders;
+
+-- CONVERT
+SELECT CONVERT(CHAR, 150);
+SELECT CONVERT(DATE, orderdate) from sales.orders;
+
+-- CONCATENATION
+SELECT	lastname,
+		firstname, 
+		CONCAT(lastname, ' ', firstname) AS Full_Name
+from hr.employees;
+
+-- LEFT
+SELECT LEFT('LAGOS', 3) ABBREVIATION
+SELECT LEFT(lastname, 3) from hr.employees;
+
+-- RIGHT
+SELECT RIGHT('LAGOS', 3) ABBREVIATION
+SELECT RIGHT(lastname, 3) from hr.employees;
+
+-- SUBSTRING
+SELECT SUBSTRING('YORUBA', 2, 4) substr;
+SELECT SUBSTRING(lastname, 2, 3) substr from hr.employees;
+
+-- REPLACE
+SELECT REPLACE('IBADAS', 'S', 'N');
+SELECT STUFF('LSGOS', 2, 1, 'A');
+
+-- LENGTH
+SELECT LEN('IBADAN')
+SELECT LEN(lastname) from hr.employees;
+
+-- MATHEMATICAL FUNCTIONS
+-- ABSOLUTE
+SELECT ABS(-152.25);
+
+-- POWER
+SELECT POWER(10, 2);
+SELECT POWER(freight, 2) New_freight from sales.orders;
+
+-- ROUND
+SELECT ROUND(1004.23242, 2);
+
+-- FLOOR
+SELECT FLOOR(-152.25);
+SELECT FLOOR(152.25);
+
+-- CEILING
+SELECT CEILING(-152.25);
+SELECT CEILING(152.25);
+
+-- DATE FUNCTIONS
+-- CURRENT TIMESTAMP
+SELECT CURRENT_TIMESTAMP, GETDATE()
+
+-- DATEADD
+SELECT DATEADD(year, 2, getdate());
+SELECT DATEADD(month, 2, getdate());
+SELECT DATEADD(day, 2, getdate());
+SELECT CONVERT(DATE, DATEADD(year, 10, CURRENT_TIMESTAMP));
+
+-- DATEDIFF
+SELECT DATEDIFF(year, '01-01-2000', GETDATE());
+SELECT DATEDIFF(month, '01-01-2000', GETDATE());
+SELECT DATEDIFF(day, '01-01-2000', GETDATE());
+
+-- DATENAME
+SELECT DATENAME(year, getdate());
+SELECT DATENAME(month, getdate());
+SELECT DATENAME(day, getdate());
+SELECT DATENAME(week, getdate());
+SELECT DATENAME(weekday, getdate());
+
+-- DATEPART
+SELECT DATEPART(year, getdate());
+SELECT DATEPART(month, getdate());
+SELECT DATEPART(day, getdate());
+SELECT DATEPART(week, getdate());
+SELECT DATEPART(weekday, getdate());
+
+-- WINDOW FUNCTIONS
+CREATE TABLE winfunction (
+EMPID INT NOT NULL,
+FNAME VARCHAR(40),
+DEPARTMENT VARCHAR(40),
+SALARY MONEY
+);
+
+INSERT INTO winfunction (empid, fname, department, salary)
+VALUES (100, 'Baba J', 'Sales', 1000.00),
+(101, 'Mogaji Aremu', 'IT', 1500.00),
+(102, 'Isaac Olopoda', 'Sales', 2000.00),
+(103, 'Mojeedat Tijani', 'Sales', 1700.00),
+(104, 'Jimoh Adeola', 'IT', 1800.00),
+(105, 'Khadijat Mary', 'Accounts', 1200.00),
+(106, 'Oladipo Rasaq', 'Accounts', 1100.00),
+(107, 'John Ugwuanyi', 'IT', 1700.00),
+(108, 'Adedayo, Ade', 'IT', 1300.00);
+
+UPDATE winfunction
+SET SALARY = 1500.00
+WHERE EMPID = 107;
+
+select * from winfunction;
+
+-- ROW_NUMBER FUNCTION
+-- ROW_NUMBER WITH PARTITION
+SELECT 
+ROW_NUMBER() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) ROWNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+-- ROW_NUMBER WITHOUT PARTITION
+SELECT 
+ROW_NUMBER() OVER(ORDER BY SALARY DESC) ROWNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+-- RANK FUNCTION
+-- RANK WITH PARTITION
+SELECT 
+RANK() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) RANKNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+-- RANK WITHOUT PARTITION
+SELECT 
+RANK() OVER(ORDER BY SALARY DESC) RANKNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+INSERT INTO winfunction
+VALUES(109, 'ADELEYE A', 'IT', 1500.00);
+
+-- DENSE_RANK FUNCTION
+-- DENSE_RANK WITH PARTITION
+SELECT 
+DENSE_RANK() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) DENSERANKNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+-- DENSE_RANK WITHOUT PARTITION
+SELECT 
+DENSE_RANK() OVER(ORDER BY SALARY DESC) DENSERANKNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+-- NTILE FUNCTION
+SELECT 
+NTILE(2) OVER(ORDER BY SALARY DESC) TILENUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction;
+
+
+-- ROW_NUMBER TO SELECT HIGHEST EARNER
+SELECT *
+FROM ( SELECT 
+DENSE_RANK() OVER(PARTITION BY DEPARTMENT ORDER BY SALARY DESC) ROWNUMB,
+FNAME, DEPARTMENT, SALARY
+FROM winfunction) E
+WHERE ROWNUMB = 2
+ORDER BY SALARY DESC;
+
+-- Student Exam EXample
+CREATE TABLE ExamResult
+(StudentName VARCHAR(70), 
+ Subject     VARCHAR(20), 
+ Marks       INT
+);
+
+INSERT INTO ExamResult
+VALUES
+('Lily', 
+ 'Maths', 
+ 65
+);
+INSERT INTO ExamResult
+VALUES
+('Lily', 
+ 'Science', 
+ 80
+);
+INSERT INTO ExamResult
+VALUES
+('Lily', 
+ 'english', 
+ 70
+);
+INSERT INTO ExamResult
+VALUES
+('Isabella', 
+ 'Maths', 
+ 50
+);
+INSERT INTO ExamResult
+VALUES
+('Isabella', 
+ 'Science', 
+ 70
+);
+INSERT INTO ExamResult
+VALUES
+('Isabella', 
+ 'english', 
+ 90
+);
+INSERT INTO ExamResult
+VALUES
+('Olivia', 
+ 'Maths', 
+ 55
+);
+INSERT INTO ExamResult
+VALUES
+('Olivia', 
+ 'Science', 
+ 60
+);
+INSERT INTO ExamResult
+VALUES
+('Olivia', 
+ 'english', 
+ 89
+);
+
+SELECT * FROM ExamResult;
+
+-- ROW NUMBER
+SELECT Studentname, 
+       Subject, 
+       Marks, 
+       ROW_NUMBER() OVER(ORDER BY Marks DESC) RowNumber
+FROM ExamResult;
+
+-- RANK WITH PARTITION
+SELECT Studentname, 
+       Subject, 
+       Marks, 
+       RANK() OVER(PARTITION BY Studentname ORDER BY Marks DESC) RANKING
+FROM ExamResult
+ORDER BY Studentname, 
+         RANKING;
+         
+-- RANK WITHOUT PARTITION
+SELECT Studentname, 
+       Subject, 
+       Marks, 
+       RANK() OVER(ORDER BY Marks DESC) RankING
+FROM ExamResult
+ORDER BY RankING;
+
+/*SELECT SHIPCITY, FREIGHT,
+ROW_NUMBER() OVER(ORDER BY FREIGHT DESC) ROWNUMBER
+FROM SALESORDERS
+WHERE SHIPCITY = 'SAN FRANCISCO'; */
+
+-- DENSE RANK WITHOUT PARTITION
+SELECT Studentname, 
+       Subject, 
+       Marks, 
+       DENSE_RANK() OVER(ORDER BY Marks DESC) RankING
+FROM ExamResult
+ORDER BY RankING;
+
+-- DENSE RANK WITH PARTITION
+SELECT Studentname, 
+       Subject, 
+       Marks, 
+       DENSE_RANK() OVER(PARTITION BY SUBJECT ORDER BY Marks DESC) RankING
+FROM ExamResult
+ORDER BY SUBJECT, 
+         RankING;
+
+-- SQL JOINs
+-- INNER JOIN
+select * from sales.customers;
+select * from sales.orders;
+
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT
+FROM SALES.CUSTOMERS AS C
+INNER JOIN SALES.ORDERS AS O
+ON C.CUSTID = O.CUSTID;
+
+-- LEFT JOIN
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT
+FROM SALES.CUSTOMERS AS C
+LEFT JOIN SALES.ORDERS AS O
+ON C.CUSTID = O.CUSTID;
+
+-- RIGHT JOIN
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT
+FROM SALES.CUSTOMERS AS C
+RIGHT JOIN SALES.ORDERS AS O
+ON C.CUSTID = O.CUSTID;
+
+-- JOINING MORE THAN TWO TABLES
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT,
+		D.PRODUCTID,
+		D.UNITPRICE,
+		D.QTY,
+		D.DISCOUNT
+FROM SALES.CUSTOMERS AS C
+LEFT JOIN SALES.ORDERS AS O
+ON C.CUSTID = O.CUSTID
+JOIN SALES.ORDERDETAILS D
+ON O.ORDERID = D.ORDERID;
+
+-- ANOTHER WAY TO JOIN TABLE
+-- JOINING MORE THAN TWO TABLES
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT,
+		D.PRODUCTID,
+		D.UNITPRICE,
+		D.QTY,
+		D.DISCOUNT
+FROM	SALES.CUSTOMERS AS C, 
+		SALES.ORDERS AS O,
+		SALES.ORDERDETAILS D
+WHERE C.CUSTID = O.CUSTID AND O.ORDERID = D.ORDERID;
+
+
+-- FULL JOIN
+-- JOINING MORE THAN TWO TABLES
+SELECT	C.CUSTID,
+		C.COMPANYNAME, 
+		C.CONTACTNAME, 
+		O.ORDERDATE, 
+		O.FREIGHT,
+		D.PRODUCTID,
+		D.UNITPRICE,
+		D.QTY,
+		D.DISCOUNT
+FROM SALES.CUSTOMERS AS C
+FULL OUTER JOIN SALES.ORDERS AS O
+ON C.CUSTID = O.CUSTID
+FULL OUTER JOIN SALES.ORDERDETAILS D
+ON O.ORDERID = D.ORDERID;
+
+-- SELF JOIN(CONCEPTUAL JOIN TYPE)
+SELECT	E.EMPID,
+		CONCAT(E.FIRSTNAME, ' ', E.LASTNAME) EMPLOYEENAME,
+		E.TITLE,
+		CONCAT(M.FIRSTNAME, ' ', M.LASTNAME) MGRNAME
+FROM	HR.EMPLOYEES E
+JOIN	HR.EMPLOYEES M
+ON E.MGRID = M.EMPID
+
+-- CROSS JOIN
+SELECT	D.N DAY, S.N SHIFT
+FROM NUMS D
+CROSS JOIN NUMS S
+WHERE D.N <= 7 AND S.N <= 3
+ORDER BY D.N
+
+-- CROSS JOIN WITH CASE
+SELECT D.N DAY, S.N SHIFT,
+CASE
+	WHEN S.N = 1 THEN 'FIRST SHIFT'
+	WHEN S.N = 2 THEN 'SECOND SHIFT'
+	ELSE 'THIRD SHIFT'
+	END AS SHIFTNAME
+FROM NUMS D
+CROSS JOIN NUMS S
+WHERE S.N <=3 AND D.N <=7
+ORDER BY D.N
+
+-- SQL UNIONs
+-- UNION
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM PRODUCTION.SUPPLIERS
+UNION
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM SALES.CUSTOMERS;
+
+-- UNION ALL
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM PRODUCTION.SUPPLIERS
+UNION ALL
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM SALES.CUSTOMERS;
+
+-- INTERSECT
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM PRODUCTION.SUPPLIERS
+INTERSECT
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM SALES.CUSTOMERS;
+
+-- EXCEPT
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM PRODUCTION.SUPPLIERS
+EXCEPT
+SELECT COMPANYNAME, CONTACTNAME, ADDRESS, CITY
+FROM SALES.CUSTOMERS;
+
+SELECT CUSTID, ADDRESS, CITY
+FROM SALES.CUSTOMERS
+UNION
+SELECT CUSTID, SHIPADDRESS, SHIPCITY
+FROM SALES.ORDERS;
+
+
+
+
+/*
+This is a 
+multi 
+line comment*/
+
+/* NORMALIZATION: 
+INSERTION, DELETION, AND UPDATING ANOMALIES.
+TYPES:
+1NF
+2NF
+3NF
+BCNF
+*/
